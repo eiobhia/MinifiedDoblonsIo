@@ -2,8 +2,6 @@
 <html>
 <head>
 	<title>doblons.io</title>
-	<!-- SS=1 --><!-- ENG=0 --><!-- US=0 --><!-- VAL=1 --><!-- GR=0 --><!-- EN=1 --><!-- DO=0 --><!-- CIA=1 -->
-	<!-- f12>treasureMap -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
 	<meta name="description" content="Doblons.io is a New IO Game! Destroy enemy ships and upgrade your own.">
 	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
@@ -36,8 +34,6 @@
 		script.type='text/javascript';
 		document.head.appendChild(script);
 	</script>
-
-	<!-- COM SCORE -->
 	<script>
 		var _comscore = _comscore || [];
 		_comscore.push({ c1: "2", c2: "6035118" });
@@ -54,8 +50,6 @@
 
 </head>
 <body>
-
-    <!-- GAME DISPLAY -->
 	<canvas tabindex="1" id="mainCanvas" oncontextmenu="return false;"></canvas>
 	<div id="gameUiContainer">
 		<div id="leaderboardContainer">
@@ -90,58 +84,37 @@
 		<canvas id="minimap" height="100" width="100">
 		</canvas>
 	</div>
-
-	<!-- DARKENER -->
-	<div id="darkener">
-	</div>
-
-	<!-- GAME MENU -->
+	<div id="darkener"></div>
 	<div id="menuContainer">
 		<div class="centerContent">
 			<div id="gameTitle">DOBLONS.IO</div>
 			<div id="userInfoContainer">
 				<div id="skinInfo">
-					<div id="skinName">
-					</div>
+					<div id="skinName"></div>
 					<img id="skinIcon">
 				</div>
 				<div id="skinSelector" onclick="changeSkin(1)"><i class="material-icons">&#xE8D5;</i> SKIN</div>
 				<input type="text" id="userNameInput" placeholder="SHIP NAME" maxlength="14" autofocus />
 				<button type="button" id="enterGameButton">SET SAIL <i class="material-icons">&#xE037;</i></button>
 			</div>
-			<div id="loadingContainer">
-			</div>
-
-			<!-- ADVERTISEMENT -->
-			<div id="adContainer">
-				<div id="adHolderDiv"><div id='cdm-zone-02'></div></div>
-			</div>
+			<div id="loadingContainer"></div>
+			<div id="adContainer"><div id="adHolderDiv"><div id='cdm-zone-02'></div></div></div>
 		</div>
 	</div>
-
- 	<!-- INFOS -->
  	<div id="linksContainer">
-
-		<!-- LOBBY KEY -->
 		<div class="spanLink" id="lobbyKey" onclick="loadPartyKey();">
 			<i class="material-icons" style="vertical-align: middle; color:#fff;">&#xE8D3;</i> <span id="lobbyKeyText">create party</span>
 		</div>
-
-		<!-- FOLLOW BUTTONS -->
 		<div id="followText">Unlock Skins:</div>
 		<div id="twitterFollBt">
 			<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=Come%20play%20this%20new%20game%20http://doblons.io%20%23iogames%20%23doblonsIO">Share</a>
 			<a href="https://twitter.com/Sidney_de_Vries" class="twitter-follow-button" data-show-screen-name="false" data-show-count="true">Follow
 			</a>
 		</div>
-
-		<!-- MODE BUTTON -->
 		<div id="modeSelector" onclick="showModeList();">
 		</div>
 		<div id="modeListView">
 		</div>
-
-		<!-- EXTERNAL LINKS -->
 		<div id="creatorLink">
 			<span class="greyMenuText">game by </span><a target="_blank" href="https://twitter.com/Sidney_de_Vries">sidney de vries</a>
 		</div>
@@ -154,8 +127,6 @@
 			<div id="controlsButton" onclick="toggleControls()"></div>
 		</div>
 	</div>
-
-	<!-- LOAD MAIN SCRIPTS -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
 	<script src="utils.js"></script>
 	<script src="game.js"></script>
