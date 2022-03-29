@@ -1,51 +1,47 @@
 <!doctypehtml>
-<html>
-<head>
-	<title>doblons.io</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
-	<meta name="description" content="Doblons.io is a New IO Game! Destroy enemy ships and upgrade your own.">
-	<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	<link rel="shortcut icon" type="image/png" href="/img/favicon.png?v=3" />
-	<link href=.css rel=stylesheet>
-	<script src="https://apis.google.com/js/platform.js"></script>
-	<script>
-		window.twttr=(function(d,s,id){
-			var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};
-			d.getElementById(id)&&return t;
-			js=d.createElement(s);
-			js.id=id;
-			js.src="https://platform.twitter.com/widgets.js";
-			fjs.parentNode.insertBefore(js,fjs);
-			t._e=[];
-			t.ready=function(f){t._e.push(f)}
-			return t;
-		}(document,"script","twitter-wjs"))
-	</script>
-	<script>
-		var script=document.createElement("script");
-		var tstamp=new Date();
-		script.id="factorem";
-		script.src="//cdm.cursecdn.com/js/doblons/cdmfactorem_min.js?sec=home&misc="+tstamp.getTime();
-		script.async=!1;
-		script.type="text/javascript";
-		document.head.appendChild(script)
-	</script>
-	<script>
-		var _comscore=_comscore||[];
-		_comscore.push({c1:"2",c2:"6035118"});
-		(function() {
-			var s=document.createElement("script"),el=document.getElementsByTagName("script")[0];
-			s.async=true;
-			s.src=(document.location.protocol=="https:"?"https://sb":"http://b")+".scorecardresearch.com/beacon.js";
-			el.parentNode.insertBefore(s,el);
-		})()
-	</script>
-	<noscript><img src="http://b.scorecardresearch.com/p?c1=2&amp;c2=6035118&amp;cv=2.0&amp;cj=1"></noscript>
-	<div style="display:none"><img alt="" height=1 src="//secure-us.imrworldwide.com/cgi-bin/m?ci=us-603339h&amp;cg=0&amp;cc=1&amp;ts=noscript" width=1></div>
+<title>doblons.io</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+<meta name="description" content="Doblons.io is a New IO Game! Destroy enemy ships and upgrade your own.">
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="shortcut icon" type="image/png" href="/img/favicon.png?v=3" />
+<link href=.css rel=stylesheet>
+<script src="https://apis.google.com/js/platform.js"></script>
+<script>
+	window.twttr=(function(d,s,id){
+		var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};
+		d.getElementById(id)&&return t;
+		js=d.createElement(s);
+		js.id=id;
+		js.src="https://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js,fjs);
+		t._e=[];
+		t.ready=function(f){t._e.push(f)}
+		return t;
+	}(document,"script","twitter-wjs"))
+</script>
+<script>
+	var script=document.createElement("script");
+	var tstamp=new Date();
+	script.id="factorem";
+	script.src="//cdm.cursecdn.com/js/doblons/cdmfactorem_min.js?sec=home&misc="+tstamp.getTime();
+	script.async=!1;
+	script.type="text/javascript";
+	document.head.appendChild(script)
+</script>
+<script>
+	var _comscore=_comscore||[];
+	_comscore.push({c1:"2",c2:"6035118"});
+	(function() {
+		var s=document.createElement("script"),el=document.getElementsByTagName("script")[0];
+		s.async=true;
+		s.src=(document.location.protocol=="https:"?"https://sb":"http://b")+".scorecardresearch.com/beacon.js";
+		el.parentNode.insertBefore(s,el);
+	})()
+</script>
+<noscript><img src="http://b.scorecardresearch.com/p?c1=2&amp;c2=6035118&amp;cv=2.0&amp;cj=1"></noscript>
+<div style="display:none"><img alt="" height=1 src="//secure-us.imrworldwide.com/cgi-bin/m?ci=us-603339h&amp;cg=0&amp;cc=1&amp;ts=noscript" width=1></div>
 
-</head>
-<body>
 	<canvas id=mainCanvas oncontextmenu="return false" tabindex=1></canvas>
 	<div id=gameUiContainer>
 		<div id=leaderboardContainer>
