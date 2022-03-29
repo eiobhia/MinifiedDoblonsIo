@@ -1,32 +1,26 @@
-var targetFPS = 60, delta, delta2, currentTime, oldTime = 0, gameData, socket, port;
-Math.lerp = function(b, a, c) {
-    c = 0 > c ? 0 : c;
-    return b + (a - b) * (1 < c ? 1 : c)
+var targetFPS=60,delta,delta2,currentTime,oldTime=0,gameData,socket,port;
+Math.lerp=function(b,a,c){
+    c=0>c?0:c;
+    return b+(a-b)*(1<c?1:c)
 }
-;
-Math.lerpAngle = function(b, a, c) {
-    Math.abs(a - b) > Math.PI && (b > a ? a += 2 * Math.PI : b += 2 * Math.PI);
-    return a + (b - a) * c
+Math.lerpAngle=function(b,a,c){
+    Math.abs(a-b)>Math.PI&&(b>a?a+=2*Math.PI:b+=2*Math.PI);
+    return a+(b-a)*c
 }
-;
-Number.prototype.round = function(b) {
-    return +this.toFixed(b)
-}
-;
-CanvasRenderingContext2D.prototype.roundRect = function(b, a, c, d, f, h) {
-    h = h || 1;
-    c < 2 * f && (f = c / 2);
-    d < 2 * f && (f = d / 2);
+Number.prototype.round=function(b){return+this.toFixed(b)}
+CanvasRenderingContext2D.prototype.roundRect=function(b,a,c,d,f,h){
+    h=h||1;
+    c<2*f&&(f=c/2);
+    d<2*f&&(f=d/2);
     this.beginPath();
-    this.moveTo(b + f, a);
-    this.arcTo(b + c * h, a, b + c * h, a + d, f);
-    this.arcTo(b + c, a + d, b, a + d, f);
-    this.arcTo(b, a + d, b, a, f);
-    this.arcTo(b * (1 == h ? h : 1.2 * h), a, b + c * h, a, f);
+    this.moveTo(b+f,a);
+    this.arcTo(b+c*h,a,b+c*h,a+d,f);
+    this.arcTo(b+c,a+d,b,a+d,f);
+    this.arcTo(b,a+d,b,a,f);
+    this.arcTo(b*(1==h?h:1.2*h),a,b+c*h,a,f);
     this.closePath();
     return this
 }
-;
 var MathPI = Math.PI
   , MathCOS = Math.cos
   , MathSIN = Math.sin
@@ -93,15 +87,12 @@ var MathPI = Math.PI
     u: 0,
     d: 0
 };
-function resetKeys() {
-    keys.l = 0;
-    keys.r = 0
-}
-var hasStorage = "undefined" !== typeof Storage;
-if (hasStorage) {
-    var cid = localStorage.getItem("sckt");
-    cid || (cid = UTILS.getUniqueID(),
-    localStorage.setItem("sckt", cid))
+function resetKeys(){keys.l=0;keys.r=0}
+var hasStorage="undefined"!==typeof Storage;
+if(hasStorage){
+    var cid=localStorage.getItem("sckt");
+    cid||(cid=UTILS.getUniqueID(),
+    localStorage.setItem("sckt",cid))
 }
 var partyKey = null
   , player = null
@@ -117,25 +108,23 @@ var partyKey = null
   , speedInc = 0
   , mTarget = 0
   , controlIndex = 0;
-if (hasStorage) {
-    var contIndx = localStorage.getItem("contrlSt");
-    contIndx && (controlIndex = contIndx)
+if(hasStorage){
+    var contIndx=localStorage.getItem("contrlSt");
+    contIndx&&(controlIndex=contIndx)
 }
-var controlShemes = [{
-    id: 1,
-    name: "<i style='vertical-align: middle;' class='material-icons'>&#xE312;</i> Keyboard & Mouse"
-}, {
-    id: 2,
-    name: "<i style='vertical-align: middle;' class='material-icons'>&#xE323;</i> Mouse Only"
+var controlShemes=[{
+    id:1,name:"<i style='vertical-align: middle;' class='material-icons'>&#xE312;</i> Keyboard & Mouse"
+},{
+    id:2,name:"<i style='vertical-align: middle;' class='material-icons'>&#xE323;</i> Mouse Only"
 }];
-function setControlSheme(b) {
-    controlsButton.innerHTML = controlShemes[b].name;
-    localStorage.setItem("contrlSt", b);
-    socket.emit("6", "cont", b)
+function setControlSheme(b){
+    controlsButton.innerHTML=controlShemes[b].name;
+    localStorage.setItem("contrlSt",b);
+    socket.emit("6","cont",b)
 }
-function toggleControls() {
+function toggleControls(){
     controlIndex++;
-    controlIndex >= controlShemes.length && (controlIndex = 0);
+    controlIndex>=controlShemes.length&&(controlIndex=0);
     setControlSheme(controlIndex)
 }
 var viewMult = 1, maxScreenWidth = 2208, maxScreenHeight = 1242, originalScreenWidth = maxScreenWidth, originalScreenHeight = maxScreenHeight, screenWidth, screenHeight, darkColor = "#4d4d4d";
@@ -151,15 +140,12 @@ if (lobbyURLIP) {
       , lobbyURLIP = tmpL[0];
     lobbyRoomID = tmpL[1]
 }
-window.onload = function() {
-    enterGameButton.onclick = function() {
-        setTimeout(factorem.refreshAds.bind(factorem, null, !0), 10);
+onload=function() {
+    enterGameButton.onclick=function(){
+        setTimeout(factorem.refreshAds.bind(factorem,null,!0),10);
         enterGame()
     }
-    ;
-    userNameInput.addEventListener("keypress", function(b) {
-        13 === (b.which || b.keyCode) && enterGame()
-    });
+    userNameInput.onkeypress=b=>13==(b.which||b.keyCode)&&enterGame();
     $.get("/getIP", {
         sip: lobbyURLIP
     }, function(b) {
@@ -194,9 +180,9 @@ function mouseUp(b) {
     socket && player && !player.dead && socket.emit("2")
 }
 var shooting = !1;
-window.onkeyup = function(b) {
-    b = b.keyCode ? b.keyCode : b.which;
-    if (socket && player && !player.dead) {
+onkeyup=function(b){
+    b=b.keyCode?b.keyCode:b.which;
+    if(socket&&player&&!player.dead){
         void 0 != upgrInputsToIndex["k" + b] && doUpgrade(upgrInputsToIndex["k" + b], 0, 1);
         32 == b && (shooting = !1,
         socket.emit("2"));
@@ -216,8 +202,7 @@ window.onkeyup = function(b) {
         70 == b && socket.emit("5")
     }
 }
-;
-window.onkeydown = function(b) {
+onkeydown = function(b) {
     b = b.keyCode ? b.keyCode : b.which;
     socket && player && !player.dead && (shooting || 32 != b || (shooting = !0,
     socket.emit("2", 1)),
@@ -239,20 +224,11 @@ window.onkeydown = function(b) {
     sendMoveTarget()))
 }
 ;
-function setupSocket() {
-    socket.on("connect_error", function() {
-        lobbyURLIP ? kickPlayer("Connection failed. Please check your lobby ID") : kickPlayer("Connection failed. Check your internet and firewall settings")
-    });
-    socket.on("disconnect", function(a) {
-        kickPlayer("Disconnected.");
-        console.log("Send this to the dev: " + a)
-    });
-    socket.on("kick", function(a) {
-        kickPlayer(a)
-    });
-    socket.on("lk", function(a) {
-        partyKey = a
-    });
+function setupSocket(){
+    socket.on("connect_error",()=>lobbyURLIP?kickPlayer("Connection failed. Please check your lobby ID"):kickPlayer("Connection failed. Check your internet and firewall settings"));
+    socket.on("disconnect",a=>{kickPlayer("Disconnected.");console.log("Send this to the dev: "+a)});
+    socket.on("kick",a=>kickPlayer(a));
+    socket.on("lk",a=>partyKey=a);
     socket.on("mds", function(a, b) {
         modeList = a;
         modeSelector.innerHTML = a[b].name + "  <i style='vertical-align: middle;' class='material-icons'>&#xE5C5;</i>";
@@ -282,10 +258,7 @@ function setupSocket() {
         a = getPlayerIndexById(a);
         null != a && users.splice(a, 1)
     });
-    socket.on("dnt", function(a, b) {
-        timeDisplay.innerHTML = a;
-        dayTimeValue = b
-    });
+    socket.on("dnt",(a,b)=>{timeDisplay.innerHTML=a;dayTimeValue=b});
     socket.on("0", function(a) {
         for (var b = "", f = 1, c, e = 0; e < a.length; )
             c = "",
@@ -385,16 +358,7 @@ function setupSocket() {
     });
     socket.on("5", function(a, b) {
         var c = getPlayerIndex(a);
-        null != c && (c = users[c],
-        c.animMults || (c.animMults = [{
-            mult: 1
-        }, {
-            mult: 1
-        }, {
-            mult: 1
-        }, {
-            mult: 1
-        }]),
+        null!=c&&(c=users[c],c.animMults||(c.animMults=[{mult:1},{mult:1},{mult:1},{mult:1}]),
         c.animMults[b].plus = -.03)
     });
     socket.on("6", function(a, b) {
@@ -406,15 +370,9 @@ function setupSocket() {
         player.dead && (hideMainMenuText(),
         leaveGame()))))
     });
-    socket.on("7", function(a) {
-        scoreContainer.innerHTML = "score <span class='greyMenuText'>" + a + "</span>"
-    });
-    socket.on("n", function(a) {
-        showNotification(a)
-    });
-    socket.on("s", function(a) {
-        showScoreNotif(a)
-    });
+    socket.on("7",a=>scoreContainer.innerHTML="score <span class='greyMenuText'>"+a+"</span>");
+    socket.on("n",a=>showNotification(a));
+    socket.on("s",a=>showScoreNotif(a));
     var a = "#fff #fff #ff6363 #ff6363 rgba(103,255,62,0.2) rgba(255,255,255,0.3) #63b0ff rgba(255,242,99,0.3)".split(" ");
     socket.on("m", function(b) {
         minimap.width = minimap.width;
@@ -459,13 +417,8 @@ function enterGame() {
     }),
     localStorage.setItem("lstnmdbl", userNameInput.value))
 }
-function leaveGame() {
-    toggleGameUI(!1);
-    toggleMenuUI(!0)
-}
-function doUpgrade(b, a, c) {
-    socket.emit("3", b, a, c)
-}
+function leaveGame(){toggleGameUI(!1);toggleMenuUI(!0)}
+function doUpgrade(b,a,c){socket.emit("3",b,a,c)}
 var activePopup;
 function showWeaponPopup(b) {
     for (var a = 0; 4 > a; a++) {
@@ -1225,7 +1178,7 @@ function kickPlayer(b) {
     kickReason || (kickReason = b);
     showMainMenuText(kickReason);
     socket.close();
-    window.history.pushState("", "Doblons.io", "/")
+    history.pushState("", "Doblons.io", "/")
 }
 function updateOrPushUser(b) {
     var a = getPlayerIndex(b.sid);
@@ -1258,9 +1211,7 @@ function hideMainMenuText() {
     userInfoContainer.style.display = "block";
     loadingContainer.style.display = "none"
 }
-function toggleGameUI(b) {
-    gameUiContainer.style.display = b ? "block" : "none"
-}
+function toggleGameUI(b){gameUiContainer.style.display=b?"block":"none"}
 function toggleMenuUI(b) {
     b ? (menuContainer.style.display = "flex",
     darkener.style.display = "block",
@@ -1281,7 +1232,7 @@ function resize() {
     mainContext.setTransform(b, 0, 0, b, (screenWidth - maxScreenWidth * b) / 2, (screenHeight - maxScreenHeight * b) / 2)
 }
 resize();
-var then = window.performance.now();
+var then = performance.now();
 window.requestAnimFrame = function() {
     return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function(b, a) {
         window.setTimeout(b, 1E3 / targetFPS)
