@@ -1269,7 +1269,6 @@ function toggleMenuUI(b) {
     darkener.style.display = "none",
     linksContainer.style.display = "none")
 }
-var treasureMap = "TK0PM100K";
 window.addEventListener("resize", resize);
 function resize() {
     screenWidth = window.innerWidth;
